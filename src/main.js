@@ -7,7 +7,6 @@ import Results from './components/Results';
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
-
 const routes = [
   {
     path: '/',
