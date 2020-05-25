@@ -10,19 +10,22 @@
                 </tr>
             </thead>
             <tbody>
-            <tr v-for="flight in flights" :key="flight.id">
-                <template v-for="segment in flight.itineraries">
+            <tr>
+                <template v-for="segment in flights.itineraries">
                     <th v-for="DT in segment.segments" :key="DT"
                         scope="row">{{DT.departure.at}} </th>
                 </template>
-                <template v-for="segment in flight.itineraries">
-                    <th v-for="DTT in segment.segments" :key="DTT"
-                        scope="row">{{DTT.duration}} </th>
+                <template v-for="segment in flights.itineraries">
+                    <th v-for="DT in segment.segments" :key="DT"
+                        scope="row">{{DT.duration}} </th>
                 </template>
-                <template v-for="segment in flight.itineraries">
-                    <th v-for="FD in segment.segments" :key="FD"
-                        scope="row">{{FD.arrival.at}} </th>
+                <template v-for="segment in flights.itineraries">
+                    <th v-for="DT in segment.segments" :key="DT"
+                        scope="row">{{DT.arrival.at}} </th>
                 </template>
+                <th scope="row">
+                    {{flights.price.total}}
+                </th>
             </tr>
             </tbody>
         </table>
@@ -30,7 +33,6 @@
 </template>
 
 <script>
-    import {EventBus} from "../event-bus";
     export default {
         name: 'Results',
         data(){
@@ -39,16 +41,12 @@
             }
         },
         methods: {
-            get_flights() {
-                EventBus.$on('FR', (value) => {
-                    this.flights = value;
-                    console.log(JSON.stringify(this.flights));
-                })
-            }
         },
         created() {
-            this.get_flights();
-        },
+            this.flights = this.$store.getters.flights;
+            console.log(this.flights)
+
+        }
     }
 </script>
 

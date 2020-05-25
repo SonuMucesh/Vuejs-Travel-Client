@@ -13,13 +13,8 @@
 
 <script>
   import axios from 'axios';
-  import {EventBus} from "../event-bus";
-
   export default {
   name: 'SearchPage',
-    props: {
-    msg: String
-  },
   data() {
     return {
       flights: [],
@@ -35,14 +30,8 @@
       axios.get(path)
               .then((response) => {
                   this.flights = response.data;
-                  //console.log(this.flights[0].price.total)
-                  var i;
-                  for(i = 0; i < response.data.length; i++){
-                    //console.log(this.flights[i].price.total)
-                }
-                  //console.log(JSON.stringify(this.flights));
-                  EventBus.$emit('FlightData', this.flights[0]);
-                  this.$router.push({name: 'Results', params: this.flights[0]});
+                  this.$store.commit('change', this.flights[0]);
+                  this.$router.push({name: 'Results'});
               })
               .catch((error) => {
     console.error(error);
