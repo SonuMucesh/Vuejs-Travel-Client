@@ -30,7 +30,7 @@
       axios.get(path)
               .then((response) => {
                   this.flights = response.data;
-                  this.$store.commit('change', this.flights[0]);
+                  this.$store.commit('change', this.flights.slice(0,3));
                   this.$router.push({name: 'Results'});
               })
               .catch((error) => {

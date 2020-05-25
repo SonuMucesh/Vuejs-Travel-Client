@@ -1,34 +1,26 @@
 <template>
     <div class="ResultsTable">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Departure Time</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Arrival Time</th>
-                    <th scope="col">Price</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <template v-for="segment in flights.itineraries">
-                    <th v-for="DT in segment.segments" :key="DT"
-                        scope="row">{{DT.departure.at}} </th>
+        <div v-for="flight in flights" :key="flight.id" class="card">
+            <div class="card-header">
+                <h3>£{{flight.price.total}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="card-title">
+                    <template v-for="segment in flight.itineraries">
+                        <h7 v-for="DDT in segment.segments" :key="DDT" >Departure: {{DDT.departure.at.substring(11,)}} At: {{DDT.departure.iataCode}}</h7>
+                    </template>
+                </div>
+                <template v-for="segment in flight.itineraries">
+                    <h7 v-for="DT in segment.segments" :key="DT" >Arrival: {{DT.arrival.at.substring(11,)}} At: {{DT.arrival.iataCode}}</h7>
                 </template>
-                <template v-for="segment in flights.itineraries">
-                    <th v-for="Duration in segment.segments" :key="Duration"
-                        scope="row">{{Duration.duration}} </th>
-                </template>
-                <template v-for="segment in flights.itineraries">
-                    <th v-for="AT in segment.segments" :key="AT"
-                        scope="row">{{AT.arrival.at}} </th>
-                </template>
-                <th scope="row">
-                    {{flights.price.total}}
-                </th>
-            </tr>
-            </tbody>
-        </table>
+                <div class="card-text">
+                    <template v-for="segment in flight.itineraries">
+                        <h8 v-for="Duration in segment.segments" :key="Duration">{{Duration.duration}} </h8>
+                    </template>
+                </div>
+                <a href="#" class="btn btn-primary">BUY</a>
+            </div>
+        </div>
     </div>
 </template>
 
