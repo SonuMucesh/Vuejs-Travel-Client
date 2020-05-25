@@ -16,12 +16,12 @@
                         scope="row">{{DT.departure.at}} </th>
                 </template>
                 <template v-for="segment in flights.itineraries">
-                    <th v-for="DT in segment.segments" :key="DT"
-                        scope="row">{{DT.duration}} </th>
+                    <th v-for="Duration in segment.segments" :key="Duration"
+                        scope="row">{{Duration.duration}} </th>
                 </template>
                 <template v-for="segment in flights.itineraries">
-                    <th v-for="DT in segment.segments" :key="DT"
-                        scope="row">{{DT.arrival.at}} </th>
+                    <th v-for="AT in segment.segments" :key="AT"
+                        scope="row">{{AT.arrival.at}} </th>
                 </template>
                 <th scope="row">
                     {{flights.price.total}}
