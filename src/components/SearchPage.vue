@@ -6,7 +6,7 @@
           <img alt="VueLogo" src="@/assets/logo.png">
       <label class="sr-only" for="ArrivalAirport">Name</label>
       <input type="text" v-model=input.ArrivalAirport class="form-control mb-2 mr-sm-2" id="ArrivalAirport" placeholder="Bombay">
-      <button type="submit" v-on:click="getFlights" class="btn btn-primary mb-2">Search</button>
+      <button type="submit" v-on:click="getFlights" class="btn btn-primary mb-2" @keypress="getFlights">Search</button>
     </form>
   </div>
 </template>
