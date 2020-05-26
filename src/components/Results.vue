@@ -1,26 +1,32 @@
 <template>
     <div class="ResultsTable">
-        <div v-for="flight in flights" :key="flight.id" class="card">
-            <div class="card-header">
-                <h3>£{{flight.price.total}}</h3>
-            </div>
-            <div class="card-body">
-                <div class="card-title">
+        <div class="card" v-for="flight in flights" :key="flight.id">
+            <div class="card-body" style="width: 65rem;display: block;margin: auto;">
+                <h2 class="card-title" style="position: center;">
                     <template v-for="segment in flight.itineraries">
-                        <h7 v-for="DDT in segment.segments" :key="DDT" >Departure: {{DDT.departure.at.substring(11,)}} At: {{DDT.departure.iataCode}}</h7>
+                        <h7 v-for="DDT in segment.segments" :key="DDT" >{{DDT.operating.carrierCode}}</h7>
                     </template>
+                </h2>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <template v-for="segment in flight.itineraries">
+                                <h2 v-for="DDT in segment.segments" :key="DDT" >Departure: {{DDT.departure.at.substring(11,)}}</h2>
+                            </template>
+                        </div>
+                        <div class="col-md-3" style="display: initial;margin: auto;"><img src="@/assets/TicketPlane.png" style="width: 80px;height: 80px;display: block;margin: auto;" /></div>
+                        <div class="col-md-3">
+                            <template v-for="segment in flight.itineraries">
+                                <h2 v-for="DT in segment.segments" :key="DT" >Arrival: {{DT.arrival.at.substring(11,)}}</h2>
+                            </template>
+                        </div>
+                        <div class="col-md-3 offset-md-1" style="align-content: center;display: block;margin: auto;">
+                            <h1 style="align-items: center;">£{{flight.price.total}}</h1><button class="btn btn-primary" type="button">BUY</button></div>
+                    </div>
                 </div>
-                <template v-for="segment in flight.itineraries">
-                    <h7 v-for="DT in segment.segments" :key="DT" >Arrival: {{DT.arrival.at.substring(11,)}} At: {{DT.arrival.iataCode}}</h7>
-                </template>
-                <div class="card-text">
-                    <template v-for="segment in flight.itineraries">
-                        <h8 v-for="Duration in segment.segments" :key="Duration">{{Duration.duration}} </h8>
-                    </template>
-                </div>
-                <a href="#" class="btn btn-primary">BUY</a>
             </div>
         </div>
+        <div style="margin: auto;display: block;"></div>
     </div>
 </template>
 

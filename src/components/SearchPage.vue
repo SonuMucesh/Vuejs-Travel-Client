@@ -30,7 +30,7 @@
       axios.get(path)
               .then((response) => {
                   this.flights = response.data;
-                  this.$store.commit('change', this.flights.slice(0,3));
+                  this.$store.commit('change', this.flights.slice(0,10));
                   this.$router.push({name: 'Results'});
               })
               .catch((error) => {
@@ -43,10 +43,6 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  body {
-    text-align: center;
-      background-image: url("https://images.pexels.com/photos/533923/pexels-photo-533923.jpeg?cs=srgb&dl=beach-foam-landscape-nature-533923.jpg&fm=jpg");
-  }
   form {
     display: inline-block;
     position: center;
