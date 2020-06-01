@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import VueRouter from 'vue-router'
 import SearchPage from './components/SearchPage';
 import Results from './components/Results';
+import FlightBooking from './components/FlightBooking';
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -18,6 +19,11 @@ const routes = [
     name: 'Results',
     component: Results
   },
+    {
+        path: '/FlightBooking',
+        name: 'FlightBooking',
+        component: FlightBooking
+    },
 ]
 
 const  router = new VueRouter({

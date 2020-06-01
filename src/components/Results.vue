@@ -21,7 +21,11 @@
                             </template>
                         </div>
                         <div class="col-md-3 offset-md-1" style="align-content: center;display: block;margin: auto;">
-                            <h1 style="align-items: center;">£{{flight.price.total}}</h1><button class="btn btn-primary" type="button">BUY</button></div>
+                            <h1 style="align-items: center;">£{{flight.price.total}}</h1>
+                            <template>
+                                <button class="btn btn-primary" type="button" v-on:click="flightbook">BUY</button>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,6 +43,10 @@
             }
         },
         methods: {
+            flightbook(){
+                //this.$store.commit('change2', 0);
+                this.$router.push({name: 'FlightBooking'});
+            }
         },
         created() {
             this.flights = this.$store.getters.flights;
