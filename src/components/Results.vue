@@ -4,7 +4,7 @@
             <div class="card-body" style="width: 65rem;display: block;margin: auto;">
                 <h2 class="card-title" style="position: center;">
                     <template v-for="segment in flight.itineraries">
-                        <h7 v-for="DDT in segment.segments" :key="DDT" >{{DDT.operating.carrierCode}}</h7>
+                        <h3 v-for="DDT in segment.segments" :key="DDT" >{{DDT.operating.carrierCode}}</h3>
                     </template>
                 </h2>
                 <div class="container">
@@ -44,7 +44,7 @@
         },
         methods: {
             flightbook(){
-                //this.$store.commit('change2', 0);
+                this.$store.commit('change2', 0);
                 this.$router.push({name: 'FlightBooking'});
             }
         },
