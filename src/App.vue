@@ -1,16 +1,19 @@
 <template>
   <div id="app">
+    <nav-bar></nav-bar>
     <router-view/>
   </div>
 </template>
 
 <script>
 import {store} from "./store";
+import NavBar from "./components/NavBar";
 
 export default {
   store,
   name: 'App',
   components: {
+    NavBar
   }
 }
 </script>
@@ -23,5 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  background-image: url("assets/marina-YmQ0-nmWcV0-unsplash.jpg");
+  background-size: cover;
 }
 </style>

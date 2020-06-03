@@ -1,12 +1,15 @@
 <template>
   <div class="SearchPage">
       <form class="form-inline" @submit.prevent>
-      <label class="sr-only" for="DepartureAirport">Name</label>
-      <input type="text" v-model=input.DepartureAirport class="form-control mb-2 mr-sm-2" id="DepartureAirport" placeholder="London">
           <img alt="VueLogo" src="@/assets/logo.png">
-      <label class="sr-only" for="ArrivalAirport">Name</label>
-      <input type="text" v-model=input.ArrivalAirport class="form-control mb-2 mr-sm-2" id="ArrivalAirport" placeholder="Bombay">
-      <button type="submit" v-on:click="getFlights" class="btn btn-primary mb-2" @keypress="getFlights">Search</button>
+          <label class="sr-only" for="DepartureAirport">Name</label>
+          <input type="text" v-model=input.DepartureAirport class="form-control mb-2 mr-sm-2" id="DepartureAirport" placeholder="London">
+          <label class="sr-only" for="ArrivalAirport">Name</label>
+          <input type="text" v-model=input.ArrivalAirport class="form-control mb-2 mr-sm-2" id="ArrivalAirport" placeholder="Bombay">
+          <input type="date" v-model="input.DepartureDate" class="form-control mb-2 mr-sm-2" id="DepartureDate" placeholder="dd/mm/yyyy">
+          <input type="date" v-model="input.ArrivalDate" class="form-control mb-2 mr-sm-2" id="ArrivalDate" placeholder="dd/mm/yyyy">
+          <input type="text" v-model="input.Passengers" class="form-control mb-2 mr-sm-2" id="Passengers" placeholder="1 Adult">
+          <button type="submit" v-on:click="getFlights" class="btn btn-primary mb-2" @keypress="getFlights">Search</button>
     </form>
   </div>
 </template>
@@ -19,8 +22,11 @@
     return {
       flights: [],
       input: {
-        DepartureAirport: "",
-        ArrivalAirport: "",
+          DepartureAirport: "",
+          ArrivalAirport: "",
+          DepartureDate: "",
+          ArrivalDate: "",
+          Passengers: "",
       }
     }
   },
@@ -47,9 +53,22 @@
     display: inline-block;
     position: center;
       padding-top: 175px;
+      color: #ccc;
   }
     img{
         align-content: center;
         width: 100px;
     }
+    .btn-primary{
+        background-color: transparent;
+        border: #ccc;
+    }
+    .form-control{
+        background-color: transparent;
+        border: #ccc;
+    }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #ccc;
+      opacity: 1; /* Firefox */
+  }
 </style>
