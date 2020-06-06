@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         flights: [],
-        flightID: 0
+        flightID: 0,
+        flightbooking: [],
     },
     mutations: {
         change(state, flights) {
@@ -14,10 +15,14 @@ export const store = new Vuex.Store({
         },
         change2(state2, flightID){
             state2.flightID = flightID
+        },
+        change3(state3, flightbooking){
+            state3.flightbooking = flightbooking
         }
     },
     getters: {
         flights: state => state.flights,
-        flightID: state2 => state2.flightID
+        flightID: state2 => state2.flightID,
+        flightbooking: state3 => state3.flightbooking
     }
 })

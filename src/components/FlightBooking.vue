@@ -1,29 +1,63 @@
 <template>
     <div class="SignUpForm">
-        <button @submit.prevent class="btn btn-primary mb-2" v-on:click="sendPassengerData">BOOK</button>
-        <form class="bootstrap-form-with-validation">
-            <h2 class="text-center">Bootstrap form basic</h2>
-            <div class="form-group"><label for="text-input">Text Input</label><input class="form-control" type="text" id="text-input" name="text-input" /></div>
-            <div class="form-group"><label for="password-input">Password Input</label><input class="form-control" type="password" id="password-input" name="password-input" /></div>
-            <div class="form-group"><label for="email-input">Email Input</label><input class="form-control" type="email" id="email-input" name="email-input" /></div>
-            <div class="form-group"><label for="textarea-input">Textarea </label><textarea class="form-control" id="textarea-input" name="textarea-input"></textarea></div>
-            <div class="form-group"><label for="search-input">Search Input Group</label>
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-search"></i></span></div><input class="form-control" type="search" id="search-input" name="search-input" /></div>
-            </div>
-            <div class="form-group"><label for="file-input">File Input</label><input type="file" id="file-input" name="file-input" /></div>
-            <div class="form-group">
-                <div class="form-check"><input class="form-check-input" type="checkbox" name="checkbox-input" id="formCheck-1" /><label class="form-check-label" for="formCheck-1">Checkbox</label></div>
-            </div>
-            <div class="form-group">
-                <div class="form-check"><input class="form-check-input" type="radio" name="radio-group" id="formCheck-2" /><label class="form-check-label" for="formCheck-2">Radio</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="radio-group" checked id="formCheck-3" /><label class="form-check-label" for="formCheck-3">Radio</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="radio-group" id="formCheck-4" /><label class="form-check-label" for="formCheck-4">Radio</label></div>
-            </div>
-            <div class="form-group"><label>Static Control</label><input class="form-control-plaintext" type="text" /></div>
-            <div class="form-group"><button class="btn btn-primary" type="submit">Button</button></div>
-        </form>
-
+        <div class="contact-clean">
+            <form @submit.prevent>
+                <h2 class="text-left" style="margin-top: -40px; padding-bottom: 10px; font-family: Oswald;">Passenger Details</h2>
+                <div class="form-group" style="display: inline-table; margin-left: -80px">
+                    <input class="form-control" type="text" name="name" v-model="input.FirstName" placeholder="First Name" />
+                </div>
+                <div class="form-group" style="display: inline-table; padding-left: 10px;">
+                    <input class="form-control" type="text" name="name" v-model="input.LastName" placeholder="Last Name" />
+                </div>
+                <div class="form-group" style="display: inline-table; padding-left: 10px;">
+                    <input class="form-control" type="date" placeholder="Date Of Birth">
+                </div>
+                <select class="form-control" id="Gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" v-model="input.Email" placeholder="Email Address" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" v-model="input.PhoneNumber" placeholder="Phone Number +44" />
+                </div>
+                <select class="form-control" >
+                    <option>Passport</option>
+                    <option>ID</option>
+                </select>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" v-model="input.BirthPlace" placeholder="Place Of Birth" />
+                </div>
+                <div class="form-group" style="display: inline-table; margin-left: -20px">
+                    <input class="form-control" type="text" name="name" v-model="input.IssuanceLocation" placeholder="Issuance Location" />
+                </div>
+                <div class="form-group" style="display: inline-table; padding-left: 10px;">
+                    <input class="form-control" type="text" name="name" v-model="input.IssuanceDate" placeholder="Issuance Date" />
+                </div>
+                <div class="form-group" style="display: inline-table; padding-left: 10px;">
+                    <input class="form-control" type="text" name="name" v-model="input.PassNumber" placeholder="Number" />
+                </div>
+                <div class="form-group" >
+                    <input class="form-control" type="date" name="name" v-model="input.ExpiryDate" placeholder="Expiry Date" />
+                </div>
+                <div class="form-group" >
+                    <input class="form-control" type="text" name="name" v-model="input.IssuanceCountry" placeholder="Issuance Country [GB]" />
+                </div>
+                <div class="form-group" style="display: inline-table; margin-left: -20px;">
+                    <input class="form-control" type="text" name="name" v-model="input.ValidityCountry" placeholder="Validity Country [GB]" />
+                </div>
+                <div class="form-group" style="display: inline-table; padding-left: 12px;">
+                    <input class="form-control" type="text" name="name" v-model="input.Nationality" placeholder="Nationality [GB]" />
+                </div>
+                <div class="form-group" style="display: inline-table; padding-left: 10px;">
+                    <input class="form-control" type="text" name="name" v-model="input.Holder" placeholder="Holder [True/False]" />
+                </div>
+                <div class="form-btn">
+                    <button class="submit-btn" v-on:click="sendPassengerData" @submit.prevent>Book Flight</button>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -33,8 +67,24 @@
         name: 'FlightBooking',
         data() {
             return {
+                FlightConfimationData: [],
                 PassengerDetails: [],
                 num: 0,
+                input: {
+                    FirstName: "",
+                    LastName: "",
+                    Email: "",
+                    PhoneNumber: "",
+                    Holder: "",
+                    Nationality: "",
+                    ValidityCountry: "",
+                    IssuanceCountry: "",
+                    ExpiryDate: "",
+                    PassNumber: "",
+                    IssuanceDate: "",
+                    IssuanceLocation: "",
+                    BirthPlace: "",
+                }
             }
         },
         methods: {
@@ -59,11 +109,14 @@
 
                 axios.post(path, traveler)
                     .then((response) => {
+                        this.FlightConfimationData = response.data
                         console.log(response.data)
                     })
                     .catch((error) => {
                         console.error(error);
                     });
+                this.$store.commit('change3', this.FlightConfimationData);
+                this.$router.push({name: 'BookingItinerary'});
             }
         },
         created() {
@@ -73,5 +126,45 @@
 </script>
 
 <style scoped>
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
+    body {
+        font-family: "Oswald";
+    }
+
+    .contact-clean {
+        font-family: Oswald;
+        display: inline-block;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        background-color: #fff;
+        width: 650px;
+        height: 665px;
+        padding: 50px 20px;
+        -webkit-box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        font-size: 12px;
+    }
+    select.form-control {
+        margin-bottom: 15px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    .submit-btn{
+        font-family: Oswald;
+        font-size: 20px;
+        display: inline-block;
+        color: #fff;
+        background-color: #1e62d8;
+        font-weight: 700;
+        padding: 10px 30px;
+        border-radius: 4px;
+        border: none;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+
 
 </style>

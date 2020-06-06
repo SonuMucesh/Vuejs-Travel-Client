@@ -1,17 +1,89 @@
 <template>
-  <div class="SearchPage">
-      <form class="form-inline" @submit.prevent>
-          <img alt="VueLogo" src="@/assets/logo.png">
-          <label class="sr-only" for="DepartureAirport">Name</label>
-          <input type="text" v-model=input.DepartureAirport class="form-control mb-2 mr-sm-2" id="DepartureAirport" placeholder="London">
-          <label class="sr-only" for="ArrivalAirport">Name</label>
-          <input type="text" v-model=input.ArrivalAirport class="form-control mb-2 mr-sm-2" id="ArrivalAirport" placeholder="Bombay">
-          <input type="date" v-model="input.DepartureDate" class="form-control mb-2 mr-sm-2" id="DepartureDate" placeholder="dd/mm/yyyy">
-          <input type="date" v-model="input.ArrivalDate" class="form-control mb-2 mr-sm-2" id="ArrivalDate" placeholder="dd/mm/yyyy">
-          <input type="text" v-model="input.Passengers" class="form-control mb-2 mr-sm-2" id="Passengers" placeholder="1 Adult">
-          <button type="submit" v-on:click="getFlights" class="btn btn-primary mb-2" @keypress="getFlights">Search</button>
-    </form>
-  </div>
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-md-push-5">
+                        <div class="booking-cta">
+                            <h1>Discover The World Like It's Your Home!</h1>
+                            <p>Flight is the process by which an object moves through an atmosphere (or beyond it, as in the case of spaceflight) without contact with the surface.
+                                This can be achieved by generating aerodynamic lift associated with propulsive thrust, aerostatically using buoyancy, or by ballistic movement.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-pull-7">
+                        <div class="booking-form">
+                            <form @submit.prevent>
+                                <div class="form-group">
+                                    <span class="form-label">From</span>
+                                    <input class="form-control" type="text" v-model="input.DepartureAirport" placeholder="Enter a Departure">
+                                </div>
+                                <div class="form-group">
+                                    <span class="form-label">Destination</span>
+                                    <input class="form-control" type="text" v-model="input.ArrivalAirport" placeholder="Enter a destination">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Departure</span>
+                                            <input class="form-control" v-model="input.DepartureDate" type="date" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <span class="form-label">Arrival</span>
+                                            <input class="form-control" v-model="input.ArrivalDate" type="date" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <span class="form-label">Adults</span>
+                                            <select class="form-control">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <span class="form-label">Children</span>
+                                            <select class="form-control">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <span class="form-label">Infant</span>
+                                            <select class="form-control">
+                                                <option>0</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                            <span class="select-arrow"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn">
+                                    <button class="submit-btn" v-on:click="getFlights" @keypress="getFlights" @submit.prevent>Check availability</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -33,11 +105,13 @@
   methods: {
     getFlights(){
       const path = 'http://127.0.0.1:5000/flights?DepartureAirport='+ this.input.DepartureAirport + "&ArrivalAirport=" + this.input.ArrivalAirport;
+      console.log(this.DepartureAirport)
       axios.get(path)
               .then((response) => {
                   this.flights = response.data;
                   this.$store.commit('change', this.flights.slice(0,10));
                   this.$router.push({name: 'Results'});
+                  console.log(JSON.stringify(response.data[0]))
               })
               .catch((error) => {
     console.error(error);
@@ -49,26 +123,146 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  form {
-    display: inline-block;
-    position: center;
-      padding-top: 175px;
-      color: #ccc;
-  }
-    img{
-        align-content: center;
-        width: 100px;
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
+    body {
+        font-family: "Oswald";
     }
-    .btn-primary{
-        background-color: transparent;
-        border: #ccc;
+    .section {
+        position: relative;
+        height: 92vh;
     }
-    .form-control{
-        background-color: transparent;
-        border: #ccc;
+
+    .section .section-center {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
-  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: #ccc;
-      opacity: 1; /* Firefox */
-  }
+
+    #booking {
+        font-family: "Oswald";
+        background-size: cover;
+        background-position: center;
+    }
+
+    #booking::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+    }
+
+    .booking-form {
+        background-color: #fff;
+        width: 420px;
+        padding: 50px 20px;
+        -webkit-box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        font-size: 18px;
+    }
+
+    .booking-form .form-group {
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+    .booking-form .form-control {
+        background-color: #ebecee;
+        border-radius: 4px;
+        border: none;
+        height: 40px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #3e485c;
+        font-size: 14px;
+    }
+
+    .booking-form .form-control::-webkit-input-placeholder {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form .form-control:-ms-input-placeholder {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form .form-control::placeholder {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form input[type="date"].form-control:invalid {
+        color: rgba(62, 72, 92, 0.3);
+    }
+
+    .booking-form select.form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .booking-form select.form-control+.select-arrow {
+        position: absolute;
+        right: 0px;
+        bottom: 4px;
+        width: 32px;
+        line-height: 32px;
+        height: 32px;
+        text-align: center;
+        pointer-events: none;
+        color: rgba(62, 72, 92, 0.3);
+        font-size: 14px;
+    }
+
+    .booking-form select.form-control+.select-arrow:after {
+        content: '\279C';
+        display: block;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .booking-form .form-label {
+        display: inline-block;
+        color: #3e485c;
+        font-weight: 700;
+        margin-bottom: 6px;
+        margin-left: 7px;
+    }
+
+    .booking-form .submit-btn {
+        display: inline-block;
+        color: #fff;
+        background-color: #1e62d8;
+        font-weight: 700;
+        padding: 14px 30px;
+        border-radius: 4px;
+        border: none;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .booking-form .submit-btn:hover,
+    .booking-form .submit-btn:focus {
+        opacity: 0.9;
+    }
+
+    .booking-cta {
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+
+    .booking-cta h1 {
+        font-size: 52px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .booking-cta p {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.8);
+    }
 </style>
