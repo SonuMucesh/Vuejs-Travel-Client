@@ -6,7 +6,11 @@ import SearchPage from './components/SearchPage';
 import Results from './components/Results';
 import FlightBooking from './components/FlightBooking';
 import BookingItinerary from './components/BookingItinerary';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 const routes = [

@@ -27,8 +27,8 @@ export default {
   color: black;
   margin-top: 60px;
 }
-body {
-   background-image: url("assets/SeachPageBackground.jpg");
-   background-size: cover;
- }
+/*body {*/
+/*   background-image: url("assets/SeachPageBackground.jpg");*/
+/*   background-size: cover;*/
+/* }*/
 </style>
