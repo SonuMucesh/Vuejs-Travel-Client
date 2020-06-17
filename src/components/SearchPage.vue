@@ -231,9 +231,9 @@
       axios.get(path)
               .then((response) => {
                   this.flights = response.data;
-                  this.$store.commit('change', this.flights.slice(0,10));
+                  this.$store.commit('change', this.flights.slice(0,20));
                   this.$router.push({name: 'Results'});
-                  console.log(JSON.stringify(response.data[0]))
+                  //console.log(JSON.stringify(response.data[0]))
               })
               .catch((error) => {
     console.error(error);
