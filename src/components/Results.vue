@@ -1,5 +1,5 @@
 <template>
-    <div class="ResultsTable">
+    <div class="ResultsTable" style="padding-top: 20px">
         <div class="section-center">
             <div class="container">
                 <div class="row">
@@ -30,15 +30,19 @@
                                                         <h5 v-for="DDT in segment.segments" :key="DDT" style="margin-bottom: 40px; margin-top: 10px; margin-left: -100px">{{(DDT.duration).substring(2,3)}}H {{(DDT.duration).substring(4,7)}}</h5>
                                                     </template>
                                                 </div>
-                                                <img id="Plane" src="./AirplaneWithLine.png" width="100px" height="50px" style="margin-top: 0px; margin-left: -90px; padding-left: 10px">
-                                                <div class="col-md-2">
+                                                <div class="col-md-2" style="margin-left: -120px">
                                                     <template v-for="segment in flight.itineraries">
-                                                        <h4 v-for="DT in segment.segments" :key="DT" style="padding-bottom: 40px">{{DT.arrival.at.substring(11,16)}}</h4>
+                                                        <img v-for="DDT in segment.segments" :key="DDT" id="Plane" src="./AirplaneWithLine.png" width="70px"  style="margin-top: 0px;padding-bottom: 35px;">
                                                     </template>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <template v-for="segment in flight.itineraries">
-                                                        <h5 v-for="DT in segment.segments" :key="DT" style="margin-left: -315px; padding-bottom: 22px; margin-top: 30px">{{DT.arrival.iataCode}}</h5>
+                                                        <h4 v-for="DT in segment.segments" :key="DT" style="padding-bottom: 40px; margin-left: -70px">{{DT.arrival.at.substring(11,16)}}</h4>
+                                                    </template>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <template v-for="segment in flight.itineraries">
+                                                        <h5 v-for="DT in segment.segments" :key="DT" style="margin-left: -385px; padding-bottom: 22px; margin-top: 30px">{{DT.arrival.iataCode}}</h5>
                                                     </template>
                                                 </div>
                                                 <div class="col-md-2" style="align-content: center;display: block;margin: auto;">
@@ -81,15 +85,18 @@
             console.log(JSON.stringify(this.flights[0]))
             // console.log(JSON.stringify(this.flights[0].itineraries[0].segments[0].arrival.at).substring(12,20).replace(":","").replace(":",""))
 
+
         }
     }
 </script>
 
 <style scoped>
     @import url('https://fonts.googleapis.com/css?family=Righteous');
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
     *
     .booking-form {
-        font-family: Righteous;
+        font-family: Oswald;
+        font-weight: bold;
         margin-left: 12px;
         background-color: #fff;
         width: 840px;
