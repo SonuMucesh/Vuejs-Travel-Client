@@ -48,7 +48,7 @@
                                                 <div class="col-md-2" style="align-content: center;display: block;margin: auto;">
                                                     <h1 style="margin-top: -50px; font-size: 20px; margin-right: -420px;">£{{flight.price.total}}</h1>
                                                     <template>
-                                                        <button class="btn btn-primary" type="button" v-on:click="flightbook" style="font-size: 15px; width: 100px; margin-right: -420px; margin-top: -150px">Select</button>
+                                                        <button class="btn btn-primary" type="button" v-on:click="flightbook(flight.id)" style="font-size: 15px; width: 100px; margin-right: -420px; margin-top: -150px">Select</button>
                                                     </template>
                                                 </div>
                                             </div>
@@ -71,12 +71,12 @@
         data(){
             return{
                 flights: [],
-                FlightID: "",
             }
         },
         methods: {
-            flightbook(){
-                this.$store.commit('change2', this.flights.id);
+            flightbook(ID){
+                console.log(ID);
+                this.$store.commit('change2', ID);
                 this.$router.push({name: 'FlightBooking'});
             },
         },
@@ -92,10 +92,10 @@
 
 <style scoped>
     @import url('https://fonts.googleapis.com/css?family=Righteous');
-    @import url('https://fonts.googleapis.com/css?family=Oswald');
+    @import url('https://fonts.googleapis.com/css?family=Calistoga');
     *
     .booking-form {
-        font-family: Oswald;
+        font-family: Calistoga;
         font-weight: bold;
         margin-left: 12px;
         background-color: #fff;

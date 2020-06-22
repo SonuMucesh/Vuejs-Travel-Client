@@ -28,17 +28,17 @@
                                             <form class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <span class="form-label" style="margin-right: 220px">From</span>
-                                                    <input class="form-control" style="height: 50px" type="text" v-model="input.DepartureAirport" placeholder="Enter a Departure">
+                                                    <input class="form-control" style="height: 50px; text-transform: uppercase;" type="text" v-model="input.DepartureAirport" placeholder="Enter a Departure">
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <span class="form-label" style="margin-right: 220px">Destination</span>
-                                                    <input class="form-control" style="height: 50px" type="text" v-model="input.ArrivalAirport" placeholder="Enter a destination">
+                                                    <input class="form-control" style="height: 50px; text-transform: uppercase;" type="text" v-model="input.ArrivalAirport" placeholder="Enter a destination">
                                                 </div>
                                                 <div class="form-group col-md-4" style="margin-top: -7px">
                                                     <span class="form-label" style="margin-right: 220px">Departing - Returning</span>
                                                     <b-dropdown id="dropdown-form" text="Enter  Dates" variant="outline-dark" ref="dropdown" class="m-2">
                                                         <b-dropdown-form>
-                                                            <functional-calendar :is-date-range='true'></functional-calendar>
+                                                            <input class="form-control" v-model="input.DepartureDate" type="date" required>
                                                         </b-dropdown-form>
                                                     </b-dropdown>
                                                 </div>
@@ -47,7 +47,7 @@
                                         <div id="BottomForm" @submit.prevent>
                                             <form class="form-row">
                                                 <div class="form-group col-md-4" style="margin-top: 18px">
-                                                    <b-dropdown id="dropdown-form" text="Passengers" variant="outline-dark" ref="dropdown" class="m-2">
+                                                    <b-dropdown id="dropdown-form" text="Passengers" variant="outline-dark"  ref="dropdown" class="m-2">
                                                         <b-dropdown-form>
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-4">
@@ -68,7 +68,7 @@
                                                 </div>
                                                 <div class="form-group col-md-4" @submit.prevent>
                                                     <span class="form-label" style="margin-right: 220px">Cabin Class</span>
-                                                    <select class="form-control" style="height: 50px; font-family: 'Righteous'">
+                                                    <select class="form-control" style="height: 50px; font-family: 'Calistoga'">
                                                         <option>Economy</option>
                                                         <option>Premium Economy</option>
                                                         <option>Business Class</option>
@@ -206,16 +206,11 @@
 
 <script>
   import axios from 'axios';
-  import { FunctionalCalendar } from 'vue-functional-calendar';
   export default {
   name: 'SearchPage',
-      components: {
-      FunctionalCalendar
-      },
   data() {
     return {
       flights: [],
-        calendarData: {},
       input: {
           DepartureAirport: "",
           ArrivalAirport: "",
@@ -226,8 +221,7 @@
   },
   methods: {
     getFlights(){
-      const path = 'http://127.0.0.1:5000/flights?DepartureAirport='+ this.input.DepartureAirport + "&ArrivalAirport=" + this.input.ArrivalAirport;
-      console.log(this.DepartureAirport)
+      const path = 'http://127.0.0.1:5000/flights?DepartureAirport='+ this.input.DepartureAirport.toUpperCase() + "&ArrivalAirport=" + this.input.ArrivalAirport.toUpperCase() + "&DDate=" + this.input.DepartureDate;
       axios.get(path)
               .then((response) => {
                   this.flights = response.data;
@@ -239,19 +233,15 @@
     console.error(error);
   });
     },
-      openDropdown(){
-          const elem = this.$refs.dropdownRef;
-          elem.click();
-      }
-  }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import url('https://fonts.googleapis.com/css?family=Righteous');
+    @import url('https://fonts.googleapis.com/css?family=Calistoga');
     .jumbotron {
-        font-family: 'Righteous';
+        font-family: 'Calistoga';
         background-image: url("Jumbo.jpg");
         background-position: center;
         background-size: cover;
@@ -292,7 +282,7 @@
         transition: 0.2s all;
     }
     select{
-        font-family: 'Righteous';
+        font-family: 'Calistoga';
     }
     #dropdown-form{
         height: 100%;
