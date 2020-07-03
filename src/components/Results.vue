@@ -95,7 +95,7 @@
     @import url('https://fonts.googleapis.com/css?family=Calistoga');
     *
     .booking-form {
-        font-family: Calistoga;
+        font-family: Righteous;
         font-weight: bold;
         margin-left: 12px;
         background-color: #fff;

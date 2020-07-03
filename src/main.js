@@ -9,6 +9,9 @@ import BookingItinerary from './components/BookingItinerary';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead'
+Vue.component('vue-bootstrap-typeahead', VueBootstrapTypeahead)
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueRouter)

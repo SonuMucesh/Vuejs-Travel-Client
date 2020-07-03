@@ -28,11 +28,21 @@
                                             <form class="form-row">
                                                 <div class="form-group col-md-4">
                                                     <span class="form-label" style="margin-right: 220px">From</span>
-                                                    <input class="form-control" style="height: 50px; text-transform: uppercase;" type="text" v-model="input.DepartureAirport" placeholder="Enter a Departure">
+                                                    <vue-bootstrap-typeahead
+                                                            v-model="input.DepartureAirport"
+                                                            :data="Airports"
+                                                            size="lg"
+                                                            placeholder="Enter A Departure"
+                                                    />
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <span class="form-label" style="margin-right: 220px">Destination</span>
-                                                    <input class="form-control" style="height: 50px; text-transform: uppercase;" type="text" v-model="input.ArrivalAirport" placeholder="Enter a destination">
+                                                    <vue-bootstrap-typeahead
+                                                            v-model="input.ArrivalAirport"
+                                                            :data="Airports"
+                                                            size="lg"
+                                                            placeholder="Enter A Destination"
+                                                    />
                                                 </div>
                                                 <div class="form-group col-md-4" style="margin-top: -7px">
                                                     <span class="form-label" style="margin-right: 220px">Departing - Returning</span>
@@ -206,42 +216,54 @@
 
 <script>
   import axios from 'axios';
+  import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
+  import AirportsJsonFile from "../Airports"
   export default {
-  name: 'SearchPage',
-  data() {
-    return {
-      flights: [],
-      input: {
-          DepartureAirport: "",
-          ArrivalAirport: "",
-          DepartureDate: "",
-          ArrivalDate: "",
+      name: 'SearchPage',
+      components: {
+          VueBootstrapTypeahead
+      },
+      data() {
+          return {
+              flights: [],
+              Airports: [],
+              AirportsJson: AirportsJsonFile,
+              input: {
+                  DepartureAirport: "",
+                  ArrivalAirport: "",
+                  DepartureDate: "",
+                  ArrivalDate: "",
+              }
+          }
+      },
+      methods: {
+          getFlights() {
+              const path = 'http://127.0.0.1:5000/flights?DepartureAirport=' + this.input.DepartureAirport.toUpperCase().substring(0,3) + "&ArrivalAirport=" + this.input.ArrivalAirport.toUpperCase().substring(0,3) + "&DDate=" + this.input.DepartureDate;
+              axios.get(path)
+                  .then((response) => {
+                      this.flights = response.data;
+                      this.$store.commit('change', this.flights.slice(0, 20));
+                      this.$router.push({name: 'Results'});
+                      //console.log(JSON.stringify(response.data[0]))
+                  })
+                  .catch((error) => {
+                      console.error(error);
+                  });
+          },
+      },
+      created() {
+          for (var i=0 ; i < AirportsJsonFile.length ; i++) {
+              this.Airports.push( AirportsJsonFile[i].code  + ": " + AirportsJsonFile[i].name);
+          }
       }
-    }
-  },
-  methods: {
-    getFlights(){
-      const path = 'http://127.0.0.1:5000/flights?DepartureAirport='+ this.input.DepartureAirport.toUpperCase() + "&ArrivalAirport=" + this.input.ArrivalAirport.toUpperCase() + "&DDate=" + this.input.DepartureDate;
-      axios.get(path)
-              .then((response) => {
-                  this.flights = response.data;
-                  this.$store.commit('change', this.flights.slice(0,20));
-                  this.$router.push({name: 'Results'});
-                  //console.log(JSON.stringify(response.data[0]))
-              })
-              .catch((error) => {
-    console.error(error);
-  });
-    },
-  },
-}
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @import url('https://fonts.googleapis.com/css?family=Calistoga');
+    @import url('https://fonts.googleapis.com/css?family=Righteous');
     .jumbotron {
-        font-family: 'Calistoga';
+        font-family: 'Righteous';
         background-image: url("Jumbo.jpg");
         background-position: center;
         background-size: cover;
