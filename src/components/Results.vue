@@ -32,7 +32,7 @@
                                                 </div>
                                                 <div class="col-md-2" style="margin-left: -120px">
                                                     <template v-for="segment in flight.itineraries">
-                                                        <img v-for="DDT in segment.segments" :key="DDT" id="Plane" src="./AirplaneWithLine.png" width="70px"  style="margin-top: 0px;padding-bottom: 35px;">
+                                                        <img v-for="DDT in segment.segments" :key="DDT" id="Plane" src="../assets/AirplaneWithLine.png" width="70px" style="margin-top: 0px;padding-bottom: 35px;">
                                                     </template>
                                                 </div>
                                                 <div class="col-md-2">

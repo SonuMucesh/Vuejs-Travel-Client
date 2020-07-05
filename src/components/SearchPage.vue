@@ -95,121 +95,9 @@
                             </div>
                         </div>
                     </div>
+                    <SearchPage_Cards></SearchPage_Cards>
                 </div>
-                <label style="font-size: 35px; margin-top: 150px; padding-bottom: 20px">Discover deals in every city</label>
-                <div class="row" id="Cards">
-                    <div class="col-sm-4">
-                        <div class="card text-white">
-                            <img src="./TokyoCard.jpg" class="card-img" >
-                            <div class="card-img-overlay">
-                            </div>
-                            <div class="card-footer text-muted">
-                                <h2 style="color: black">Tokyo, Japan</h2>
-                                <a href="#" class="btn btn-primary" style="background-color: transparent; color: black">Get Prices</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card text-white">
-                            <img src="./TajMahal.jpg" class="card-img" >
-                            <div class="card-img-overlay">
-                            </div>
-                            <div class="card-footer text-muted">
-                                <h2 style="color: black">Agra, India</h2>
-                                <a href="#" class="btn btn-primary" style="background-color: transparent; color: black">Get Prices</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card text-white">
-                            <img src="./NYCard.jpg" class="card-img" >
-                            <div class="card-img-overlay">
-                            </div>
-                            <div class="card-footer text-muted">
-                                <h2 style="color: black">New York, USA</h2>
-                                <a href="#" class="btn btn-primary" style="background-color: transparent; color: black">Get Prices</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <footer class="page-footer font-small stylish-color-dark pt-4" style="margin-top: 200px">
-                    <div class="container text-center text-md-left">
-                        <div class="row">
-                            <div class="col-md-4 mx-auto">
-                                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
-                                <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                                    consectetur
-                                    adipisicing elit.
-                                </p>
-                            </div>
-                            <hr class="clearfix w-100 d-md-none">
-                            <div class="col-md-2 mx-auto">
-                                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#!">Cities</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">City Breaks</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Plan Your Trip</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Countries</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <hr class="clearfix w-100 d-md-none">
-                            <div class="col-md-2 mx-auto">
-                                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#!">Link 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Link 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Link 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Link 4</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <hr class="clearfix w-100 d-md-none">
-                            <div class="col-md-2 mx-auto">
-                                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="#!">Link 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Link 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Link 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#!">Link 4</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <ul class="list-unstyled list-inline text-center py-2">
-                        <li class="list-inline-item">
-                            <h5 class="mb-1">Register for free</h5>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
-                        </li>
-                    </ul>
-                    <hr>
-                    <div class="footer-copyright text-center py-3">© 2020 Copyright: Sonu</div>
-                </footer>
+                <Footer></Footer>
             </div>
         </div>
 </template>
@@ -218,10 +106,14 @@
   import axios from 'axios';
   import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
   import AirportsJsonFile from "../Airports"
+  import Footer from "./Footer";
+  import SearchPage_Cards from "./SearchPage_Cards";
   export default {
       name: 'SearchPage',
       components: {
-          VueBootstrapTypeahead
+          VueBootstrapTypeahead,
+          Footer,
+          SearchPage_Cards,
       },
       data() {
           return {
@@ -264,7 +156,7 @@
     @import url('https://fonts.googleapis.com/css?family=Righteous');
     .jumbotron {
         font-family: 'Righteous';
-        background-image: url("Jumbo.jpg");
+        background-image: url("../assets/Jumbo.jpg");
         background-position: center;
         background-size: cover;
         height: 520px;
@@ -312,10 +204,4 @@
         width: 250px;
         height: 50px;
     }
-    #Cards{
-        margin-top: 10px;
-        margin-left: 170px;
-        margin-right: 170px;
-    }
-
 </style>
